@@ -14,7 +14,11 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "projectReferences": {}
+        "projectReferences": {
+          "/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/TaskApi.Data.csproj": {
+            "projectPath": "/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/TaskApi.Data.csproj"
+          }
+        }
       }
     },
     "warningProperties": {

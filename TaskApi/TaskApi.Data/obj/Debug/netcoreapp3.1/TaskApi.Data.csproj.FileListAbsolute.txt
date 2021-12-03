@@ -1,0 +1,12 @@
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/bin/Debug/netcoreapp3.1/TaskApi.Data.deps.json
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/bin/Debug/netcoreapp3.1/TaskApi.Data.runtimeconfig.json
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/bin/Debug/netcoreapp3.1/TaskApi.Data.runtimeconfig.dev.json
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/bin/Debug/netcoreapp3.1/TaskApi.Data.dll
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/bin/Debug/netcoreapp3.1/TaskApi.Data.pdb
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/obj/Debug/netcoreapp3.1/TaskApi.Data.csprojAssemblyReference.cache
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/obj/Debug/netcoreapp3.1/TaskApi.Data.AssemblyInfoInputs.cache
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/obj/Debug/netcoreapp3.1/TaskApi.Data.AssemblyInfo.cs
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/obj/Debug/netcoreapp3.1/TaskApi.Data.csproj.CoreCompileInputs.cache
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/obj/Debug/netcoreapp3.1/TaskApi.Data.dll
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/obj/Debug/netcoreapp3.1/TaskApi.Data.pdb
+/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi.Data/obj/Debug/netcoreapp3.1/TaskApi.Data.genruntimeconfig.cache
