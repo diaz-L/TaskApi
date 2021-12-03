@@ -11,6 +11,3 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-
-TaskApi/TaskApi/appsettings.json
-TaskApi/TaskApi/appsettings.*.json

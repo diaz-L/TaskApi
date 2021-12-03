@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskApi", "TaskApi\TaskApi.csproj", "{33EB4108-03A7-4C4F-B2C2-D9426626791A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskApi.Data", "TaskApi.Data\TaskApi.Data.csproj", "{C979D327-A7FB-4C70-9055-33280BBD35FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{33EB4108-03A7-4C4F-B2C2-D9426626791A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33EB4108-03A7-4C4F-B2C2-D9426626791A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33EB4108-03A7-4C4F-B2C2-D9426626791A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C979D327-A7FB-4C70-9055-33280BBD35FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C979D327-A7FB-4C70-9055-33280BBD35FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C979D327-A7FB-4C70-9055-33280BBD35FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C979D327-A7FB-4C70-9055-33280BBD35FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
