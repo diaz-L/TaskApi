@@ -19,14 +19,19 @@ namespace TaskApi.Controllers
         }
         
         [HttpGet]
-        public IActionResult GetTask()
+        public IActionResult GetTask([FromQuery] string category)
         {
             try
             {
-                var tasks = _context.Tasks
+                var query = _context.Tasks
                     .AsNoTracking()
                     .Include(t => t.Category)
-                    .ToList();
+                    .AsQueryable();
+
+                if (!string.IsNullOrEmpty(category))
+                    query = query.Where(t => t.Category.Name.ToLower() == category.ToLower());
+                
+                var tasks = query.ToList();
 
                 return Ok(tasks);
             }
