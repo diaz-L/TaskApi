@@ -8,4 +8,8 @@
       <ProjectReference Include="..\TaskApi.Data\TaskApi.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.21" />
+    </ItemGroup>
+
 </Project>

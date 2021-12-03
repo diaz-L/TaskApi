@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TaskApi.Data.Entities;
@@ -9,9 +10,10 @@ using TaskApi.Data.Entities;
 namespace TaskApi.Data.Migrations
 {
     [DbContext(typeof(TaskApiDbContext))]
-    partial class TaskApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211203080550_AddedNavigationPropertyToTask")]
+    partial class AddedNavigationPropertyToTask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,34 +92,34 @@ namespace TaskApi.Data.Migrations
                             TaskId = 1,
                             Body = "task one",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2021, 12, 3, 3, 35, 56, 770, DateTimeKind.Local).AddTicks(7180),
+                            CreatedOn = new DateTime(2021, 12, 3, 3, 5, 49, 814, DateTimeKind.Local).AddTicks(580),
                             HasCompleted = false,
-                            LastModified = new DateTime(2021, 12, 3, 3, 35, 56, 776, DateTimeKind.Local).AddTicks(300)
+                            LastModified = new DateTime(2021, 12, 3, 3, 5, 49, 818, DateTimeKind.Local).AddTicks(6070)
                         },
                         new
                         {
                             TaskId = 2,
                             Body = "task two",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2021, 12, 3, 3, 35, 56, 776, DateTimeKind.Local).AddTicks(3210),
+                            CreatedOn = new DateTime(2021, 12, 3, 3, 5, 49, 818, DateTimeKind.Local).AddTicks(7770),
                             HasCompleted = false,
-                            LastModified = new DateTime(2021, 12, 3, 3, 35, 56, 776, DateTimeKind.Local).AddTicks(3240)
+                            LastModified = new DateTime(2021, 12, 3, 3, 5, 49, 818, DateTimeKind.Local).AddTicks(7790)
                         },
                         new
                         {
                             TaskId = 3,
                             Body = "task three",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2021, 12, 3, 3, 35, 56, 776, DateTimeKind.Local).AddTicks(3300),
+                            CreatedOn = new DateTime(2021, 12, 3, 3, 5, 49, 818, DateTimeKind.Local).AddTicks(7820),
                             HasCompleted = false,
-                            LastModified = new DateTime(2021, 12, 3, 3, 35, 56, 776, DateTimeKind.Local).AddTicks(3300)
+                            LastModified = new DateTime(2021, 12, 3, 3, 5, 49, 818, DateTimeKind.Local).AddTicks(7830)
                         });
                 });
 
             modelBuilder.Entity("TaskApi.Data.Entities.Task", b =>
                 {
                     b.HasOne("TaskApi.Data.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

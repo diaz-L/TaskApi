@@ -1,4 +1,7 @@
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TaskApi.Data.Entities;
 
 namespace TaskApi.Controllers
@@ -17,7 +20,19 @@ namespace TaskApi.Controllers
         [HttpGet]
         public IActionResult GetTask()
         {
-            return Ok("it works");
+            try
+            {
+                var tasks = _context.Tasks
+                    .AsNoTracking()
+                    .Include(t => t.Category)
+                    .ToList();
+
+                return Ok(tasks);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "TkIRr+qgkehzQBDRKWCe/66UvQZajTFWp7yu/zr4NJ1TC692/NnZIVB/CCQF4OgcbA9evWrcTQOTHUYb1cC+kA==",
+  "dgSpecHash": "+YRE0mICj8datm5O+Lz9aGBEn8Faqje3eYDfWgy4xWO/dyyvebJqZWrrHdeyE8TCFn0KJg7vKHw5dTx5Agldng==",
   "success": true,
   "projectFilePath": "/Users/alfredo/RiderProjects/TaskApi/TaskApi/TaskApi/TaskApi.csproj",
   "expectedPackageFiles": [
     "/Users/alfredo/.nuget/packages/automapper/10.1.1/automapper.10.1.1.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.1/automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "/Users/alfredo/.nuget/packages/microsoft.aspnetcore.jsonpatch/3.1.21/microsoft.aspnetcore.jsonpatch.3.1.21.nupkg.sha512",
+    "/Users/alfredo/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/3.1.21/microsoft.aspnetcore.mvc.newtonsoftjson.3.1.21.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/microsoft.bcl.hashcode/1.1.1/microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
@@ -26,6 +28,8 @@
     "/Users/alfredo/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.21/microsoft.extensions.logging.abstractions.3.1.21.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/microsoft.extensions.options/3.1.21/microsoft.extensions.options.3.1.21.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/microsoft.extensions.primitives/3.1.21/microsoft.extensions.primitives.3.1.21.nupkg.sha512",
+    "/Users/alfredo/.nuget/packages/newtonsoft.json/12.0.2/newtonsoft.json.12.0.2.nupkg.sha512",
+    "/Users/alfredo/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/npgsql/4.1.9/npgsql.4.1.9.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/npgsql.entityframeworkcore.postgresql/3.1.18/npgsql.entityframeworkcore.postgresql.3.1.18.nupkg.sha512",
     "/Users/alfredo/.nuget/packages/system.collections.immutable/1.7.1/system.collections.immutable.1.7.1.nupkg.sha512",
