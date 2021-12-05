@@ -61,5 +61,26 @@ namespace TaskApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteTask(int id)
+        {
+            try
+            {
+                var task = _context.Tasks.FirstOrDefault(t => t.TaskId == id);
+
+                if (task == null)
+                    return NotFound();
+
+                _context.Tasks.Remove(task);
+                _context.SaveChanges();
+
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }
