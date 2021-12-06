@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskApi.Data.Entities;
+using TaskApi.Data.Models;
 
 namespace TaskApi.Controllers
 {
@@ -41,7 +42,7 @@ namespace TaskApi.Controllers
             }
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name="GetTaskById")]
         public IActionResult GetTaskById(int id)
         {
             try
@@ -76,6 +77,32 @@ namespace TaskApi.Controllers
                 _context.SaveChanges();
 
                 return NoContent();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CreateTask([FromBody] TaskForCreationModel taskModel)
+        {
+            try
+            {
+                if (taskModel == null)
+                    return BadRequest("Task object cannot be null");
+
+                var taskEntity = new Task
+                {
+                    Body = taskModel.Body,
+                    HasCompleted =  taskModel.HasCompleted,
+                    CategoryId =  taskModel.CategoryId
+                };
+                
+                _context.Tasks.Add(taskEntity);
+                _context.SaveChanges();
+
+                return CreatedAtRoute(nameof(GetTaskById), new { id = taskEntity.TaskId }, taskModel);
             }
             catch (Exception e)
             {

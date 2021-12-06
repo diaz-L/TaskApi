@@ -8,6 +8,18 @@ namespace TaskApi.Data.Entities.Configurations
     {
         public void Configure(EntityTypeBuilder<Task> builder)
         {
+            builder
+                .Property(t => t.CreatedOn)
+                .HasDefaultValue(DateTime.Now);
+
+            builder
+                .Property(t => t.LastModified)
+                .HasDefaultValue(DateTime.Now);
+
+            builder
+                .Property(t => t.CategoryId)
+                .HasDefaultValue(1);
+            
             builder.HasData(
                 new Task
                 {
