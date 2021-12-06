@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace TaskApi.Controllers
         {
             _context = context;
         }
+        
         
         [HttpGet]
         public IActionResult GetTask([FromQuery] string category)
@@ -42,6 +44,7 @@ namespace TaskApi.Controllers
             }
         }
 
+        
         [HttpGet("{id:int}", Name="GetTaskById")]
         public IActionResult GetTaskById(int id)
         {
@@ -62,7 +65,8 @@ namespace TaskApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-
+        
+        
         [HttpDelete("{id:int}")]
         public IActionResult DeleteTask(int id)
         {
@@ -84,6 +88,7 @@ namespace TaskApi.Controllers
             }
         }
 
+        
         [HttpPost]
         public IActionResult CreateTask([FromBody] TaskForCreationModel taskModel)
         {
@@ -103,6 +108,33 @@ namespace TaskApi.Controllers
                 _context.SaveChanges();
 
                 return CreatedAtRoute(nameof(GetTaskById), new { id = taskEntity.TaskId }, taskModel);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        
+        [HttpPut("{id:int}")]
+        public IActionResult UpdateTask(int id, [FromBody] TaskForUpdateModel taskModel)
+        {
+            try
+            {
+                if (taskModel == null)
+                    return BadRequest();
+
+                var task = _context.Tasks.Find(id);
+                if (task == null)
+                    return NotFound();
+
+                task.Body = taskModel.Body;
+                task.CategoryId = taskModel.CategoryId;
+                task.HasCompleted = taskModel.HasCompleted;
+                task.LastModified = DateTime.Now;
+                _context.SaveChanges();
+                
+                return NoContent();
             }
             catch (Exception e)
             {
