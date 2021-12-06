@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskApi.Data.Entities;
@@ -134,6 +135,42 @@ namespace TaskApi.Controllers
                 task.LastModified = DateTime.Now;
                 _context.SaveChanges();
                 
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPatch("{id:int}")]
+        public IActionResult PartialUpdateTask(int id, [FromBody] JsonPatchDocument<TaskForUpdateModel> patchDoc)
+        {
+            try
+            {
+                if (patchDoc == null)
+                    return BadRequest("patch object cannot be null");
+
+                var task = _context.Tasks.Find(id);
+
+                if (task == null)
+                    return NotFound();
+
+                var taskUpdateModel = new TaskForUpdateModel
+                {
+                    Body = task.Body,
+                    HasCompleted = task.HasCompleted,
+                    CategoryId = task.CategoryId
+                };
+                
+                patchDoc.ApplyTo(taskUpdateModel);
+
+                task.Body = taskUpdateModel.Body;
+                task.CategoryId = taskUpdateModel.CategoryId;
+                task.HasCompleted = taskUpdateModel.HasCompleted;
+
+                _context.SaveChanges();
+
                 return NoContent();
             }
             catch (Exception e)
