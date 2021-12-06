@@ -1,1 +1,5 @@
 /TaskApi/TaskApi/appsettings.Development.json
+TaskApi/TaskApi.Data/bin
+TaskApi/TaskApi.Data/obj
+.idea
+.*swp

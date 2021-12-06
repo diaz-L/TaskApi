@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TaskApi.Data.Entities;
@@ -9,9 +10,10 @@ using TaskApi.Data.Entities;
 namespace TaskApi.Data.Migrations
 {
     [DbContext(typeof(TaskApiDbContext))]
-    partial class TaskApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211205074756_UpdateTaskDatetimePropertyToHaveDefaultValue")]
+    partial class UpdateTaskDatetimePropertyToHaveDefaultValue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,14 +69,12 @@ namespace TaskApi.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(1);
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2021, 12, 5, 2, 54, 32, 926, DateTimeKind.Local).AddTicks(3670));
+                        .HasDefaultValue(new DateTime(2021, 12, 5, 2, 47, 56, 406, DateTimeKind.Local).AddTicks(6970));
 
                     b.Property<bool>("HasCompleted")
                         .HasColumnType("boolean");
@@ -82,7 +82,7 @@ namespace TaskApi.Data.Migrations
                     b.Property<DateTime>("LastModified")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2021, 12, 5, 2, 54, 32, 936, DateTimeKind.Local).AddTicks(7910));
+                        .HasDefaultValue(new DateTime(2021, 12, 5, 2, 47, 56, 418, DateTimeKind.Local).AddTicks(1950));
 
                     b.HasKey("TaskId");
 
@@ -96,27 +96,27 @@ namespace TaskApi.Data.Migrations
                             TaskId = 1,
                             Body = "task one",
                             CategoryId = 1,
-                            CreatedOn = new DateTime(2021, 12, 5, 2, 54, 32, 937, DateTimeKind.Local).AddTicks(9650),
+                            CreatedOn = new DateTime(2021, 12, 5, 2, 47, 56, 418, DateTimeKind.Local).AddTicks(4310),
                             HasCompleted = false,
-                            LastModified = new DateTime(2021, 12, 5, 2, 54, 32, 938, DateTimeKind.Local).AddTicks(490)
+                            LastModified = new DateTime(2021, 12, 5, 2, 47, 56, 418, DateTimeKind.Local).AddTicks(5020)
                         },
                         new
                         {
                             TaskId = 2,
                             Body = "task two",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2021, 12, 5, 2, 54, 32, 938, DateTimeKind.Local).AddTicks(2690),
+                            CreatedOn = new DateTime(2021, 12, 5, 2, 47, 56, 418, DateTimeKind.Local).AddTicks(6810),
                             HasCompleted = false,
-                            LastModified = new DateTime(2021, 12, 5, 2, 54, 32, 938, DateTimeKind.Local).AddTicks(2720)
+                            LastModified = new DateTime(2021, 12, 5, 2, 47, 56, 418, DateTimeKind.Local).AddTicks(6830)
                         },
                         new
                         {
                             TaskId = 3,
                             Body = "task three",
                             CategoryId = 2,
-                            CreatedOn = new DateTime(2021, 12, 5, 2, 54, 32, 938, DateTimeKind.Local).AddTicks(2780),
+                            CreatedOn = new DateTime(2021, 12, 5, 2, 47, 56, 418, DateTimeKind.Local).AddTicks(6870),
                             HasCompleted = false,
-                            LastModified = new DateTime(2021, 12, 5, 2, 54, 32, 938, DateTimeKind.Local).AddTicks(2780)
+                            LastModified = new DateTime(2021, 12, 5, 2, 47, 56, 418, DateTimeKind.Local).AddTicks(6880)
                         });
                 });
 
