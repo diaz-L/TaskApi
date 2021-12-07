@@ -19,7 +19,7 @@ namespace TaskApi.Data.Entities.Configurations
             builder
                 .Property(t => t.CategoryId)
                 .HasDefaultValue(1);
-            
+
             builder.HasData(
                 new Task
                 {
