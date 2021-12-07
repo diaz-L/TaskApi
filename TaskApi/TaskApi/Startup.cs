@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using TaskApi.Data.Entities;
+using TaskApi.Data.Entities.Profiles;
 
 namespace TaskApi
 {
@@ -30,6 +31,8 @@ namespace TaskApi
             {
                 options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddAutoMapper(typeof(MappingProfile));
             
             services.AddControllers().AddNewtonsoftJson();
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace TaskApi.Controllers
     public class TasksController : ControllerBase
     {
         private readonly TaskApiDbContext _context;
+        private readonly IMapper _mapper;
 
-        public TasksController(TaskApiDbContext context)
+        public TasksController(TaskApiDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         
         
@@ -37,7 +40,8 @@ namespace TaskApi.Controllers
                 
                 var tasks = query.ToList();
 
-                return Ok(tasks);
+                
+                return Ok(_mapper.Map<IEnumerable<Task>, IEnumerable<TaskModel>>(tasks));
             }
             catch
             {
@@ -59,7 +63,7 @@ namespace TaskApi.Controllers
                 if (task is null)
                     return NotFound();
 
-                return Ok(task);
+                return Ok(_mapper.Map<TaskModel>(task));
             }
             catch (Exception e)
             {
@@ -98,17 +102,14 @@ namespace TaskApi.Controllers
                 if (taskModel == null)
                     return BadRequest("Task object cannot be null");
 
-                var taskEntity = new Task
-                {
-                    Body = taskModel.Body,
-                    HasCompleted =  taskModel.HasCompleted,
-                    CategoryId =  taskModel.CategoryId
-                };
-                
+                var taskEntity = _mapper.Map<Task>(taskModel);
+
                 _context.Tasks.Add(taskEntity);
                 _context.SaveChanges();
 
-                return CreatedAtRoute(nameof(GetTaskById), new { id = taskEntity.TaskId }, taskModel);
+                var results = _mapper.Map<TaskModel>(taskEntity);
+
+                return CreatedAtRoute(nameof(GetTaskById), new { id = results.Id }, results);
             }
             catch (Exception e)
             {
@@ -129,10 +130,7 @@ namespace TaskApi.Controllers
                 if (task == null)
                     return NotFound();
 
-                task.Body = taskModel.Body;
-                task.CategoryId = taskModel.CategoryId;
-                task.HasCompleted = taskModel.HasCompleted;
-                task.LastModified = DateTime.Now;
+                _mapper.Map<TaskForUpdateModel, Task>(taskModel, task);
                 _context.SaveChanges();
                 
                 return NoContent();
@@ -156,18 +154,12 @@ namespace TaskApi.Controllers
                 if (task == null)
                     return NotFound();
 
-                var taskUpdateModel = new TaskForUpdateModel
-                {
-                    Body = task.Body,
-                    HasCompleted = task.HasCompleted,
-                    CategoryId = task.CategoryId
-                };
+                var taskUpdateModel = _mapper.Map<TaskForUpdateModel>(task);
+                
                 
                 patchDoc.ApplyTo(taskUpdateModel);
 
-                task.Body = taskUpdateModel.Body;
-                task.CategoryId = taskUpdateModel.CategoryId;
-                task.HasCompleted = taskUpdateModel.HasCompleted;
+                _mapper.Map<TaskForUpdateModel, Task>(taskUpdateModel, task);
 
                 _context.SaveChanges();
 
