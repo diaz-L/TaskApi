@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using TaskApi.Data.Entities;
 using TaskApi.Data.Models;
+using TaskApi.Data.ResourceParameters;
 
 namespace TaskApi.Controllers
 {
@@ -26,21 +28,33 @@ namespace TaskApi.Controllers
         
         
         [HttpGet]
-        public IActionResult GetTask([FromQuery] string category)
+        public IActionResult GetTask([FromQuery] TaskQueryParameters queryParameters)
         {
             try
             {
                 var query = _context.Tasks
                     .AsNoTracking()
                     .Include(t => t.Category)
+                    .OrderBy(t => t.TaskId)
                     .AsQueryable();
 
-                if (!string.IsNullOrEmpty(category))
-                    query = query.Where(t => t.Category.Name.ToLower() == category.ToLower());
-                
-                var tasks = query.ToList();
+                if (!string.IsNullOrEmpty(queryParameters.Category))
+                    query = query.Where(t => t.Category.Name.ToLower() == queryParameters.Category.ToLower());
 
+                var tasks = PageList<Task>.ToPageList(query,
+                    queryParameters.Page, queryParameters.PageSize);
+
+                var metadata = new
+                {
+                    tasks.HasNext,
+                    tasks.HasPrevious,
+                    tasks.TotalPages,
+                    tasks.CurrentPage,
+                    tasks.PageSize
+                };
                 
+                Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
                 return Ok(_mapper.Map<IEnumerable<Task>, IEnumerable<TaskModel>>(tasks));
             }
             catch
