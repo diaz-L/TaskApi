@@ -3,3 +3,4 @@ TaskApi/TaskApi.Data/bin
 TaskApi/TaskApi.Data/obj
 .idea
 .*swp
+.DS_Store
