@@ -6,20 +6,9 @@ namespace TaskApi.Data.Models
 {
     public class PageList<T> : List<T>
     {
-        private const int MaxPageSize = 50;
-        private int _currentPage;
-        public int CurrentPage { get => _currentPage; private set => _currentPage = (value <= 0) ? 1 : value; }
-
+        public int CurrentPage { get; private set; }
         public int TotalPages { get; private set; }
-        
-        private int _pageSize;
-
-        public int PageSize
-        {
-            get => _pageSize;
-            private set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
-        }
-
+        public int PageSize { get; private set; }
         public bool HasNext { get => CurrentPage < TotalPages; }
         public bool HasPrevious { get => CurrentPage > 1; }
 
